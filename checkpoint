@@ -1,2 +1,0 @@
-model_checkpoint_path: "custom_trafficSign_classifier"
-all_model_checkpoint_paths: "custom_trafficSign_classifier"
