@@ -111,16 +111,35 @@ To train the model, I used an AdamOptimizer with traning rate of 0.0009. I used 
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
+To get the best accuracy I tried differet:
+* Preprocessing functions (graysclae, YUV conversion, etc.)
+* Data augementation functions and minimum number of examples per class
+* Hyperparameters such as training rate, epochs number, batch size. 
+* Model architectures, LeNet, etc.
+
+The validation accuracy as a function of the epochs is shown:
+
+
+<img src="writeup_images/Valid_accuracy.png" width="480" alt="Combined Image" />
+
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of 0.998
+* validation set accuracy of 0.989
+* test set accuracy of 0.968
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
+ - I used the LeNet architecture as the initial network. It was the default architecture that was provided as the example.
+ 
 * What were some problems with the initial architecture?
+ - The validation accuracy was relatively low.  The problem with the Convolution layers was their size (5x5) which is too big for the input images of 32x32. Also the layer was not deep enough as the deeper netwerks usually have higher accuracy.
+ 
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
+- I first tried to decrease the Convolution sizes (3x3) and added more convolution layers to make the network deeper (I didn't change the ReLu layer after each Convolution). I also added the pooling layer in between every two Convolution layers. Finally after the convolution layers I added three fully connected layers for classification. I observed a high accuracy on the training set but low accuracy on the validation set that indicates over fitting. So I added drop-out units for regularization. 
+
 * Which parameters were tuned? How were they adjusted and why?
+- Traning rate, epochs number, batch size, drop-out probability, minimum number of samples per class and the parameters for preprocessing and image augmentation were the parameters that I tuned. The training rate is adjusted as it determines how fast we minimize the loss function. I started with 0.001 and started to decreases it to find best inital acuracy and I chose 0.0009.  For the epochs number, after the initial high accuracy, I increased the epochs number to make sure the accuracy does not change much with more epochs number. The batch size I tried 128 and 256 which are the best values to be used in memory and setteled on 128. I changed drop-out probability to change regularization but finalized it at 50%. The minimum number of samples per class changed the accuracy a lot and I increased this number as much as I could (This data augmentation step could take huge CPU power). I also changed some of parameters for the opencv image processing functions for a higher accuracy. 
+
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
 If a well known architecture was chosen:
