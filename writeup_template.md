@@ -1,7 +1,5 @@
 #**Traffic Sign Recognition** 
 
-<img src="writeup_images/newimg.png" width="800" alt="Combined Image"/>
-
 ---
 
 **Build a Traffic Sign Recognition Project**
@@ -86,11 +84,11 @@ To add more data to the the data set, I used the following techniques:
 
 Here are a few exmaples with original image (left) and 4 augmented images:
 
-<img src="writeup_images/augmentation1.png" width="300" alt="Combined Image" />
-<img src="writeup_images/augmentation2.png" width="300" alt="Combined Image" />
-<img src="writeup_images/augmentation3.png" width="300" alt="Combined Image" />
-<img src="writeup_images/augmentation4.png" width="300" alt="Combined Image" />
-<img src="writeup_images/augmentation5.png" width="300" alt="Combined Image" />
+<img src="writeup_images/augmentation1.png" width="600" alt="Combined Image" />
+<img src="writeup_images/augmentation2.png" width="600" alt="Combined Image" />
+<img src="writeup_images/augmentation3.png" width="600" alt="Combined Image" />
+<img src="writeup_images/augmentation4.png" width="600" alt="Combined Image" />
+<img src="writeup_images/augmentation5.png" width="600" alt="Combined Image" />
 
 The code for augmenting the training data is located in the 9-11th cell of the Ipython notebook.
 
@@ -142,29 +140,29 @@ The validation accuracy as a function of the epochs is shown:
 
 <img src="writeup_images/Valid_accuracy.png" width="800" alt="Combined Image" />
 
-My final model results were:
+My final model results are:
 * training set accuracy of 0.998
 * validation set accuracy of 0.989
 * test set accuracy of 0.968
 
 I also analyzed the false predictions on the test set. Here is the histogram of false predictions per class: 
 
-<img src="writeup_images/false-prediction.png" width="500" alt="Combined Image" /> 
+<img src="writeup_images/false_prediction.png" width="800" alt="Combined Image" />
 
 The 5 classes with the maximum number of false predictions are: 
-1  -  Beware of ice/snow 
-2  -  Road work
-3  -  End of speed limit (80km/h)
-4  -  Keep right
-5  -  General caution
+* Beware of ice/snow 
+* Road work
+* End of speed limit (80km/h)
+* Keep right
+* General caution
 
 Some of the random false predicted images of these classes are shown below. Some of these images are hard to predict for human as well, because of the bad quality of the images. However, some identifiable images are also misclassified and we can increase the number of training examples for these images to increase accuracy on these classes. 
 
-<img src="writeup_images/false_prediction_images.png" width="600" alt="Combined Image" />
+<img src="writeup_images/false_prediction_images.png" width="700" alt="Combined Image" />
 
 If an iterative approach was chosen:
 1. What was the first architecture that was tried and why was it chosen?
- - I used the LeNet architecture as the initial network. It was the default architecture that was provided as the example.
+ - I used the LeNet architecture as the initial network. It was the architecture that was provided as the example.
  
 2. What were some problems with the initial architecture?
  - The validation accuracy was relatively low.  The problem with the Convolution layers was their size (5x5) which is too big for the input images of 32x32. Also the layer was not deep enough as the deeper netwerks usually have higher accuracy.
