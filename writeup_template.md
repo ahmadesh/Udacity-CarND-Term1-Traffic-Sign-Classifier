@@ -1,8 +1,6 @@
 #**Traffic Sign Recognition** 
 
-##Writeup Template
-
-###You can use this file as a template for your writeup if you want to submit it as a markdown file, but feel free to use some other method and submit a pdf if you prefer.
+Import image
 
 ---
 
@@ -17,17 +15,6 @@ The goals / steps of this project are the following:
 * Summarize the results with a written report
 
 
-[//]: # (Image References)
-
-[image1]: ./examples/visualization.jpg "Visualization"
-[image2]: ./examples/grayscale.jpg "Grayscaling"
-[image3]: ./examples/random_noise.jpg "Random Noise"
-[image4]: ./examples/placeholder.png "Traffic Sign 1"
-[image5]: ./examples/placeholder.png "Traffic Sign 2"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
-
 ## Rubric Points
 ###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
@@ -36,42 +23,54 @@ The goals / steps of this project are the following:
 
 ####1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/ahmadesh/Udacity-CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier_customNet.ipynb)
 
 ###Data Set Summary & Exploration
 
 ####1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
+I used the numpy library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is : 34799
+* The size of the validation set is : 4410
+* The size of test set is : 12630
+* The shape of a traffic sign image is : 32x32
+* The number of unique classes/labels in the data set is 43
 
 ####2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set. It is a bar chart showing how random images from the training data set. The labels of these images are also pulled out from the provided CSV file.
 
-![alt text][image1]
+<img src="writeup_images/data_visualization.png" width="480" alt="Combined Image" />
+
+Next, I plot the histogram of the traing, validation and test sets. This shows how the image classes are distributed in each set.  
 
 ###Design and Test a Model Architecture
 
 ####1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the "Stand Out Suggestions" part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)
 
-As a first step, I decided to convert the images to grayscale because ...
+As a first step, the image data are pre-processed. The following are the pre-processing steps:
 
-Here is an example of a traffic sign image before and after grayscaling.
+* As stated in the paper by LeCun, the images are converted to YUV and the Y (luminance) componenet is only used. This method worked better, compared to gray-scale conversion. The other possibility is to input all channels to the network which was not necassory for the implemented model.
 
-![alt text][image2]
+* The CV2 histogram equalizer function is used to equalize the histogram of the images. This method compensates for difference illumanation in the images.
 
-As a last step, I normalized the image data because ...
+* Finally the image data are normalized to have zero mean and equal variance [-1, 1].
 
-I decided to generate additional data because ... 
+Here is an example of a few random images before(left) and after(right) preprocessing .
 
-To add more data to the the data set, I used the following techniques because ... 
+<img src="writeup_images/preprocess.png.jpg" width="480" alt="Combined Image" />
+
+
+I decided to generate additional data because the distribution of the classes are not ballanced. The maximum number of examples in a class is 2010 and the minimum is 180. 
+
+To add more data to the the data set, I used the following techniques: 
+
+* Translating the image by a random number of pixels in [-3, 3] range.
+* Rotating the image by a ranfom degree in [-10,10] range.
+* Scaling the image by random transform pixels.
+* Changing the brightness.
 
 Here is an example of an original image and an augmented image:
 
@@ -167,5 +166,3 @@ For the second image ...
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
 ####1. Discuss the visual output of your trained network's feature maps. What characteristics did the neural network use to make classifications?
-
-
