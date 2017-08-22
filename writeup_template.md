@@ -127,6 +127,22 @@ My final model results were:
 * validation set accuracy of 0.989
 * test set accuracy of 0.968
 
+I analyzed the false predictions on the test set. Here is the histogram of false predictions per class. 
+
+<img src="writeup_images/false-prediction.png" width="480" alt="Combined Image" /> 
+
+The 5 classes with the maximum number of false predictions are: 
+1  -  Beware of ice/snow 
+2  -  Road work
+3  -  End of speed limit (80km/h)
+4  -  Keep right
+5  -  General caution
+
+Some of the random false predicted images of these classes are shown below. Some of these images are hard to predict for human as well, because of the bad quality of the images. However, some identifiable images are also misclassified and we can increase the number of training examples for these images to increase accuracy on these classes. 
+
+<img src="writeup_images/false_prediction_images.png" width="480" alt="Combined Image" />
+
+
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
  - I used the LeNet architecture as the initial network. It was the default architecture that was provided as the example.
@@ -138,15 +154,12 @@ If an iterative approach was chosen:
 - I first tried to decrease the Convolution sizes (3x3) and added more convolution layers to make the network deeper (I didn't change the ReLu layer after each Convolution). I also added the pooling layer in between every two Convolution layers. Finally after the convolution layers I added three fully connected layers for classification. I observed a high accuracy on the training set but low accuracy on the validation set that indicates over fitting. So I added drop-out units for regularization. 
 
 * Which parameters were tuned? How were they adjusted and why?
-- Traning rate, epochs number, batch size, drop-out probability, minimum number of samples per class and the parameters for preprocessing and image augmentation were the parameters that I tuned. The training rate is adjusted as it determines how fast we minimize the loss function. I started with 0.001 and started to decreases it to find best inital acuracy and I chose 0.0009.  For the epochs number, after the initial high accuracy, I increased the epochs number to make sure the accuracy does not change much with more epochs number. The batch size I tried 128 and 256 which are the best values to be used in memory and setteled on 128. I changed drop-out probability to change regularization but finalized it at 50%. The minimum number of samples per class changed the accuracy a lot and I increased this number as much as I could (This data augmentation step could take huge CPU power). I also changed some of parameters for the opencv image processing functions for a higher accuracy. 
+
+** Traning rate, epochs number, batch size, drop-out probability, minimum number of samples per class and the parameters for preprocessing and image augmentation were the parameters that I tuned. The training rate is adjusted as it determines how fast we minimize the loss function. I started with 0.001 and started to decreases it to find best inital acuracy and I chose 0.0009.  For the epochs number, after the initial high accuracy, I increased the epochs number to make sure the accuracy does not change much with more epochs number. The batch size I tried 128 and 256 which are the best values to be used in memory and setteled on 128. I changed drop-out probability to change regularization but finalized it at 50%. The minimum number of samples per class changed the accuracy a lot and I increased this number as much as I could (This data augmentation step could take huge CPU power). I also changed some of parameters for the opencv image processing functions for a higher accuracy. 
 
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
+- I think the importance design choices are the using concolution vs perception modules, how many layers do we need; do we need feedforward connection to have better gradient backpropagation; how do we need to preprocess the images; and how to create new examples for better distribution of examples per class. 
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
 
 ###Test a Model on New Images
 
@@ -154,8 +167,7 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+
 
 The first image might be difficult to classify because ...
 
