@@ -60,7 +60,7 @@ As a first step, the image data are pre-processed. The following are the pre-pro
 
 Here is an example of a few random images before(left) and after(right) preprocessing .
 
-<img src="writeup_images/preprocess.png.jpg" width="480" alt="Combined Image" />
+<img src="writeup_images/preprocess.png" width="480" alt="Combined Image" />
 
 
 I decided to generate additional data because the distribution of the classes are not ballanced. The maximum number of examples in a class is 2010 and the minimum is 180. 
@@ -72,11 +72,13 @@ To add more data to the the data set, I used the following techniques:
 * Scaling the image by random transform pixels.
 * Changing the brightness.
 
-Here is an example of an original image and an augmented image:
+Here are a few exmaples with original image (left) and 4 augmented images:
 
-![alt text][image3]
+<img src="writeup_images/augmentation.png" width="480" alt="Combined Image" />
 
-The difference between the original data set and the augmented data set is the following ... 
+Next, new image examples in the training data set are created such that the minimum examples per class is 800. The final size of the training set is 46480. The new histogram of the training data set is: 
+
+<img src="writeup_images/training_aug.png" width="480" alt="Combined Image" />
 
 
 ####2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
@@ -86,20 +88,26 @@ My final model consisted of the following layers:
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | Input         		| 32x32x3 RGB image   							| 
-| Convolution 3x3     	| 1x1 stride, same padding, outputs 32x32x64 	|
+| Convolution 3x3     	| 1x1 stride, Valid padding, outputs 30x30x8 	|
 | RELU					|												|
-| Max pooling	      	| 2x2 stride,  outputs 16x16x64 				|
-| Convolution 3x3	    | etc.      									|
-| Fully connected		| etc.        									|
-| Softmax				| etc.        									|
-|						|												|
-|						|												|
- 
-
+| Convolution 3x3     	| 1x1 stride, Valid padding, outputs 28x28x16 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 14x14x16 				|
+| Convolution 3x3     	| 3x3 stride, Valid padding, outputs 12x12x32 	|
+| RELU					|												|
+| Convolution 3x3     	| 3x3 stride, Valid padding, outputs 10x10x32 	|
+| RELU					|												|
+| Max pooling	      	| 2x2 stride,  outputs 5x5x32 				    |
+| Fully connected		| Input: 800, Output: Output = 120        		|
+| Dropout				| 50% keep       								|
+| Fully connected		| Input: 120, Output: Output = 84        		|
+| Dropout				| 50% keep       								|
+| Fully connected		| Input: 84, Output: Output = 43        		|
+| Softmax cross entorpy		|         										|
 
 ####3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an ....
+To train the model, I used an AdamOptimizer with traning rate of 0.0009. I used 30 epochs with batch size of 128. The other hyperparameter is the minimum number of training examples per class for data augmentation that as mentioned before I ended up with 800.
 
 ####4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
