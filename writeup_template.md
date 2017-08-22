@@ -1,6 +1,6 @@
 #**Traffic Sign Recognition** 
 
-<img src="writeup_images/newimg.png" width="700" alt="Combined Image"/>
+<img src="writeup_images/newimg.png" width="800" alt="Combined Image"/>
 
 ---
 
@@ -16,7 +16,7 @@ The goals / steps of this project are the following:
 
 
 ## Rubric Points
-###Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
 
 ---
 ### Writeup / README
@@ -35,15 +35,23 @@ I used the numpy library to calculate summary statistics of the traffic signs da
 * The size of the validation set is : 4410
 * The size of test set is : 12630
 * The shape of a traffic sign image is : 32x32
-* The number of unique classes/labels in the data set is 43
+* The number of unique classes/labels in the data set is : 43
+
+The code for this part is located in the 2nd cell of the Ipython notebook.
 
 #### 2. Include an exploratory visualization of the dataset.
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how random images from the training data set. The labels of these images are also pulled out from the provided CSV file.
 
-<img src="writeup_images/data_visualization.png" width="700" alt="Combined Image"/>
+<img src="writeup_images/data_visualization.png" width="800" alt="Combined Image"/>
 
 Next, I plot the histogram of the traing, validation and test sets. This shows how the image classes are distributed in each set.  
+
+<img src="writeup_images/Histogram1.png" width="800" alt="Combined Image"/>
+<img src="writeup_images/Histogram2.png" width="800" alt="Combined Image"/>
+<img src="writeup_images/Histogram3.png" width="800" alt="Combined Image"/>
+
+The code for making predictions on my final model is located in the 3-4th cell of the Ipython notebook.
 
 ### Design and Test a Model Architecture
 
@@ -59,7 +67,13 @@ As a first step, the image data are pre-processed. The following are the pre-pro
 
 Here is an example of a few random images before(left) and after(right) preprocessing .
 
-<img src="writeup_images/preprocess.png" width="700" alt="Combined Image" />
+<img src="writeup_images/preprocess1.png" width="300" alt="Combined Image" />
+<img src="writeup_images/preprocess2.png" width="300" alt="Combined Image" />
+<img src="writeup_images/preprocess3.png" width="300" alt="Combined Image" />
+<img src="writeup_images/preprocess4.png" width="300" alt="Combined Image" />
+<img src="writeup_images/preprocess5.png" width="300" alt="Combined Image" />
+
+The code for preprocessing the images is located in the 5-6th cell of the Ipython notebook.
 
 I decided to generate additional data because the distribution of the classes are not ballanced and causes biased predictions. The maximum number of examples in a class is 2010 and the minimum is 180. 
 
@@ -72,16 +86,17 @@ To add more data to the the data set, I used the following techniques:
 
 Here are a few exmaples with original image (left) and 4 augmented images:
 
-<img src="writeup_images/augmentation1.png" width="500" alt="Combined Image" />
-<img src="writeup_images/augmentation2.png" width="500" alt="Combined Image" />
-<img src="writeup_images/augmentation3.png" width="500" alt="Combined Image" />
-<img src="writeup_images/augmentation4.png" width="500" alt="Combined Image" />
-<img src="writeup_images/augmentation5.png" width="500" alt="Combined Image" />
+<img src="writeup_images/augmentation1.png" width="300" alt="Combined Image" />
+<img src="writeup_images/augmentation2.png" width="300" alt="Combined Image" />
+<img src="writeup_images/augmentation3.png" width="300" alt="Combined Image" />
+<img src="writeup_images/augmentation4.png" width="300" alt="Combined Image" />
+<img src="writeup_images/augmentation5.png" width="300" alt="Combined Image" />
 
+The code for augmenting the training data is located in the 9-11th cell of the Ipython notebook.
 
 Next, new image examples in the training data set are created such that the minimum examples per class is 800. The final size of the training set is 46480. The new histogram of the training data set is: 
 
-<img src="writeup_images/training_aug.png" width="700" alt="Combined Image" />
+<img src="writeup_images/training_aug.png" width="800" alt="Combined Image" />
 
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
@@ -107,9 +122,13 @@ My final model consisted of the following layers:
 | Fully connected		| Input: 84, Output: Output = 43        		|
 | Softmax				|         										|
 
+The code for building the model is located in the 16-17th cell of the Ipython notebook.
+
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used an AdamOptimizer with traning rate of 0.0009. I used 30 epochs with batch size of 128. The other hyperparameter is the minimum number of training examples per class for data augmentation that as mentioned before I ended up with 800.
+
+The code for training the model is located in the 18-20th cell of the Ipython notebook.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
@@ -121,17 +140,16 @@ To get the best accuracy I tried differet:
 
 The validation accuracy as a function of the epochs is shown:
 
-<img src="writeup_images/Valid_accuracy.png" width="500" alt="Combined Image" />
+<img src="writeup_images/Valid_accuracy.png" width="800" alt="Combined Image" />
 
 My final model results were:
 * training set accuracy of 0.998
 * validation set accuracy of 0.989
 * test set accuracy of 0.968
 
-
 I also analyzed the false predictions on the test set. Here is the histogram of false predictions per class: 
 
-<img src="writeup_images/false-prediction.png" width="480" alt="Combined Image" /> 
+<img src="writeup_images/false-prediction.png" width="500" alt="Combined Image" /> 
 
 The 5 classes with the maximum number of false predictions are: 
 1  -  Beware of ice/snow 
@@ -191,7 +209,7 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 
 The code for making predictions on my final model is located in the 28-29th cell of the Ipython notebook. The  probabilities of the model predictins are shown below:
 
-<img src="writeup_images/newimgpred.png" width="700" alt="Combined Image" />
+<img src="writeup_images/newimgpred.png" width="800" alt="Combined Image" />
 
 For the first three images, the model is relatively sure about the predictions. For the forth image the model is slightly unsure about the prediction. For the last image, which is a false prediction, surprisingly the model is sure about the prediction! Interestingly, the true class for the last image is "Road work" which is among the classes with the highest false predictions in the test set that was mentioned previously. This shows that the training set for this class are not proper enough and needs some more exploration for better prediction.
 
