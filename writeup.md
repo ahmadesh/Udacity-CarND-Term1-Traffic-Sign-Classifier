@@ -100,7 +100,7 @@ My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Input         		| 32x32x3 RGB image   							| 
+| Input         		| 32x32x1 image   							| 
 | Convolution 3x3     	| 1x1 stride, Valid padding, outputs 30x30x8 	|
 | RELU					|												|
 | Convolution 3x3     	| 1x1 stride, Valid padding, outputs 28x28x16 	|

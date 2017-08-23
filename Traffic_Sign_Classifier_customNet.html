@@ -11868,7 +11868,7 @@ div#notebook {
 <span class="n">n_test</span> <span class="o">=</span> <span class="n">y_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
 <span class="c1"># What&#39;s the shape of an traffic sign image?</span>
-<span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">image_shape</span> <span class="o">=</span> <span class="p">(</span><span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,:,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
 <span class="c1"># How many unique classes/labels there are in the dataset.</span>
 <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_train</span><span class="p">))</span>
@@ -11895,7 +11895,7 @@ div#notebook {
 <pre>Number of training examples = 34799
 Number of training examples = 4410
 Number of testing examples = 12630
-Image data shape = (32, 32)
+Image data shape = (32, 32, 3)
 Number of classes = 43
 </pre>
 </div>
