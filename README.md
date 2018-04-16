@@ -12,9 +12,7 @@ The goals / steps of this project are the following:
 * Analyze the softmax probabilities of the new images
 * Summarize the results with a written report
 
-
-## Rubric Points
-### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
+Please find the IPython notebook file for this project [here](https://github.com/ahmadesh/Udacity-CarND-Traffic-Sign-Classifier/blob/master/Traffic_Sign_Classifier_customNet.ipynb).
 
 ---
 ### Writeup / README
